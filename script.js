@@ -1,6 +1,4 @@
-let city = "faridabad";
-
-const getWeather = () => {
+const getWeather = (city) => {
   fetch(
     `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&days=3`,
     APIKey
@@ -37,4 +35,15 @@ const getWeather = () => {
     .catch((err) => console.error(err));
 };
 
-getWeather();
+getWeather("new delhi"); //default
+
+//change city
+const changeCity = (e) => {
+  e.preventDefault(); //prevent auto submit and reloading
+  const cityname = document.querySelector("#searchInput").value;
+  getWeather(cityname);
+};
+
+// search button
+search = document.querySelector(".searchForm");
+search.addEventListener("submit", changeCity);
